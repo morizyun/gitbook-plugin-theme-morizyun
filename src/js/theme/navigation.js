@@ -246,7 +246,7 @@ function handleNavigation(relativeUrl, push) {
                 var responseURL = xhr.getResponseHeader('X-Current-Location') || uri;
 
                 // Replace html content
-                html = html.replace( /<(\/?)(html|body)[>\s]([^>]*)>?/ig, function(a,b,c,d){
+                html = html.replace( /<(\/?)(html|head|body)[>\s]([^>]*)>?/ig, function(a,b,c,d){
                     return '<' + b + 'div' + ( b ? '' : ' data-element="' + c + '"' ) + d + '>';
                 });
 
@@ -296,7 +296,7 @@ function handleNavigation(relativeUrl, push) {
 
                 $pageBody.toggleClass('with-summary', $('.book').hasClass('with-summary'));
 
-                try {
+                try { // FIXME
                     $('.book').replaceWith($pageBody);
                 } catch(e) {
                     $pageBody.toggleClass('with-summary', $('.book').hasClass('with-summary'));
