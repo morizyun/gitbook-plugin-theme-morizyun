@@ -22,7 +22,7 @@
       <meta property="og:title" content="{{ config.title }}" />
       <meta property="og:url" content="/" />
     {% endif %}
-    <meta property="og:image" content="/cover.jpg" />
+    <meta property="og:image" content="{{ config.pluginsConfig.rss.image_url }}" />
     <meta property="og:site_name" content="{{ config.title }}" />
     {% if glossary.path %}
       <meta property="og:description" content="{{ page.description }}" />
