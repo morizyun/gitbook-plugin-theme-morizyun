@@ -15,24 +15,15 @@
 
     <!-- Common Configuration -->
     <meta property="og:type" content="article" />
-    {% if glossary.path %}
-      <meta property="og:title" content="{{ page.title }}" />
-      <meta property="og:url" content="{{ ('/' + glossary.path)|resolveFile }}" />
-    {% else %}
-      <meta property="og:title" content="{{ config.title }}" />
-      <meta property="og:url" content="/" />
-    {% endif %}
-    <meta property="og:image" content="{{ config.pluginsConfig.rss.image_url }}" />
+    <meta property="og:title" content="{{ config.title }}" />
+    <meta property="og:url" content="{{ config.site_url + file.path.replace('.md', '.html').replace('README.html', '') }}" />
+    <meta property="og:image" content="{{ config.image_url }}" />
     <meta property="og:site_name" content="{{ config.title }}" />
-    {% if glossary.path %}
-      <meta property="og:description" content="{{ page.description }}" />
-    {% else %}
-      <meta property="og:description" content="{{ config.description }}" />
-    {% endif %}
+    <meta property="og:description" content="{{ config.description }}" />
     <!-- For facebook -->
     <meta property="fb:app_id" content="1316764855043540" />
 
-    <!-- ※Twitter共通設定 -->
+    <!-- For Twitter -->
     <meta name="twitter:card" content="summarylargeimage" />
 {% endblock %}
 
