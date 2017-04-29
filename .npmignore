@@ -1,0 +1,5 @@
+# Allow _assets folder
+!_assets
+/src
+.npmrc
+preview.png
