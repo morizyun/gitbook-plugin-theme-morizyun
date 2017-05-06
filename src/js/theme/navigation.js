@@ -249,24 +249,24 @@ function handleNavigation(relativeUrl, push) {
                 var foundHtmlStart = false;
                 var foundHeadStart = false;
                 var foundBodyStart = false;
-                html = html.replace( /<(html|head|body)[>\s]([^>]*)>?/ig, function(a,b,c,d){
-                    if ((c === 'html' && !foundHtmlStart) || (c === 'head' && !foundHeadStart) || (c === 'body' && !foundBodyStart)) {
-                        if (c === 'html') { foundHtmlStart = true; }
-                        else if (c === 'head') { foundHeadStart = true; }
-                        else if (c === 'body') { foundBodyStart = true; }
-                        return '<' + b + 'div' + ( b ? '' : ' data-element="' + c + '"' ) + d + '>';
+                html = html.replace( /<(html|head|body)[>\s]([^<>]*)>?/ig, function(matchedHtml, tag, attributes){
+                    if ((tag === 'html' && !foundHtmlStart) || (tag === 'head' && !foundHeadStart) || (tag === 'body' && !foundBodyStart)) {
+                        if (tag === 'html') { foundHtmlStart = true; }
+                        else if (tag === 'head') { foundHeadStart = true; }
+                        else if (tag === 'body') { foundBodyStart = true; }
+                        return '<' + 'div data-element="' + tag + '"' + attributes + '>';
                     }
                 });
 
                 var foundHtmlEnd = false;
                 var foundHeadEnd = false;
                 var foundBodyEnd = false;
-                html = html.replace( /<(\/)(html|head|body)[>\s]([^>]*)>?/ig, function(a,b,c,d){
-                    if ((c === 'html' && !foundHtmlEnd) || (c === 'head' && !foundHeadEnd) || (c === 'body' && !foundBodyEnd)) {
-                        if (c === 'html') { foundHtmlEnd = true; }
-                        else if (c === 'head') { foundHeadEnd = true; }
-                        else if (c === 'body') { foundBodyEnd = true; }
-                        return '<' + b + 'div' + ( b ? '' : ' data-element="' + c + '"' ) + d + '>';
+                html = html.replace( /<\/\s*(html|head|body)[>\s]([^<>]*)>?/ig, function(matchedHtml, tag, attributes){
+                    if ((tag === 'html' && !foundHtmlEnd) || (tag === 'head' && !foundHeadEnd) || (tag === 'body' && !foundBodyEnd)) {
+                        if (tag === 'html') { foundHtmlEnd = true; }
+                        else if (tag === 'head') { foundHeadEnd = true; }
+                        else if (tag === 'body') { foundBodyEnd = true; }
+                        return '</' + 'div' + attributes + '>';
                     }
                 });
 
