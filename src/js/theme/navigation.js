@@ -246,8 +246,16 @@ function handleNavigation(relativeUrl, push) {
                 var responseURL = xhr.getResponseHeader('X-Current-Location') || uri;
 
                 // Replace html content
+                var foundHtml = false;
+                var foundHead = false;
+                var foundBody = false;
                 html = html.replace( /<(\/?)(html|head|body)[>\s]([^>]*)>?/ig, function(a,b,c,d){
-                    return '<' + b + 'div' + ( b ? '' : ' data-element="' + c + '"' ) + d + '>';
+                    if ((b === 'html' && !foundHtml) || (b === 'head' && !foundHead) || (b === 'body' && !foundBody)) {
+                        if (b === 'html') { foundHtml = true; }
+                        else if (b === 'head') { foundHead = true; }
+                        else if (b === 'body') { foundBody = true; }
+                        return '<' + b + 'div' + ( b ? '' : ' data-element="' + c + '"' ) + d + '>';
+                    }
                 });
 
                 var $page = $(html),
