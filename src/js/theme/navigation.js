@@ -246,14 +246,26 @@ function handleNavigation(relativeUrl, push) {
                 var responseURL = xhr.getResponseHeader('X-Current-Location') || uri;
 
                 // Replace html content
-                var foundHtml = false;
-                var foundHead = false;
-                var foundBody = false;
-                html = html.replace( /<(\/?)(html|head|body)[>\s]([^>]*)>?/ig, function(a,b,c,d){
-                    if ((b === 'html' && !foundHtml) || (b === 'head' && !foundHead) || (b === 'body' && !foundBody)) {
-                        if (b === 'html') { foundHtml = true; }
-                        else if (b === 'head') { foundHead = true; }
-                        else if (b === 'body') { foundBody = true; }
+                var foundHtmlStart = false;
+                var foundHeadStart = false;
+                var foundBodyStart = false;
+                html = html.replace( /<(html|head|body)[>\s]([^>]*)>?/ig, function(a,b,c,d){
+                    if ((c === 'html' && !foundHtmlStart) || (c === 'head' && !foundHeadStart) || (c === 'body' && !foundBodyStart)) {
+                        if (c === 'html') { foundHtmlStart = true; }
+                        else if (c === 'head') { foundHeadStart = true; }
+                        else if (c === 'body') { foundBodyStart = true; }
+                        return '<' + b + 'div' + ( b ? '' : ' data-element="' + c + '"' ) + d + '>';
+                    }
+                });
+
+                var foundHtmlEnd = false;
+                var foundHeadEnd = false;
+                var foundBodyEnd = false;
+                html = html.replace( /<(\/)(html|head|body)[>\s]([^>]*)>?/ig, function(a,b,c,d){
+                    if ((c === 'html' && !foundHtmlEnd) || (c === 'head' && !foundHeadEnd) || (c === 'body' && !foundBodyEnd)) {
+                        if (c === 'html') { foundHtmlEnd = true; }
+                        else if (c === 'head') { foundHeadEnd = true; }
+                        else if (c === 'body') { foundBodyEnd = true; }
                         return '<' + b + 'div' + ( b ? '' : ' data-element="' + c + '"' ) + d + '>';
                     }
                 });
