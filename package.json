@@ -2,7 +2,7 @@
   "name": "gitbook-plugin-theme-morizyun",
   "description": "A customized theme for GitBook for morizyun.gitbook.com",
   "main": "./index.js",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "engines": {
     "gitbook": ">=3.0.0"
   },

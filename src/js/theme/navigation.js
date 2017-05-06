@@ -249,7 +249,7 @@ function handleNavigation(relativeUrl, push) {
                 var foundHtmlStart = false;
                 var foundHeadStart = false;
                 var foundBodyStart = false;
-                html = html.replace( /<(html|head|body)[>\s]([^<>]*)>?/ig, function(matchedHtml, tag, attributes){
+                html = html.replace( /<(html|head|body)[>\s]([^<>]*)>/ig, function(matchedHtml, tag, attributes){
                     if ((tag === 'html' && !foundHtmlStart) || (tag === 'head' && !foundHeadStart) || (tag === 'body' && !foundBodyStart)) {
                         if (tag === 'html') { foundHtmlStart = true; }
                         else if (tag === 'head') { foundHeadStart = true; }
@@ -261,7 +261,7 @@ function handleNavigation(relativeUrl, push) {
                 var foundHtmlEnd = false;
                 var foundHeadEnd = false;
                 var foundBodyEnd = false;
-                html = html.replace( /<\/\s*(html|head|body)[>\s]([^<>]*)>?/ig, function(matchedHtml, tag, attributes){
+                html = html.replace( /<\/\s*(html|head|body)[>\s]([^<>]*)>/ig, function(matchedHtml, tag, attributes){
                     if ((tag === 'html' && !foundHtmlEnd) || (tag === 'head' && !foundHeadEnd) || (tag === 'body' && !foundBodyEnd)) {
                         if (tag === 'html') { foundHtmlEnd = true; }
                         else if (tag === 'head') { foundHeadEnd = true; }
